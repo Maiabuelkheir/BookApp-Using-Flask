@@ -1,0 +1,34 @@
+{% extends 'base.html'%}
+      
+
+{% block content %}
+    <div class="d-flex flex-wrap gap-3 justify-content-center mt-5">
+   
+      {% for book in books %}
+      <div class="card text-center p-3" style="width: 18rem; background-color: #ffffff; border-radius: 10px;">
+        <a href="{{ url_for('bookdetails', book_id=book['id']) }}" class="text-decoration-none text-dark">
+
+       <img src="{{ url_for('static' ,filename='images/' + book['image_url']) }}" class="card-img-top img-fluid  shadow" alt="" style="height: 300px; width: 200px; object-fit: cover;">
+       </a>
+       <h5 class="card-title">{{ book["title"]}}</h5>
+       <p class="card text" style="border: none;">{{book["author"]}}</p>
+      </div>
+      {% endfor %}
+  </div>
+
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+
+  
+
+
+
+

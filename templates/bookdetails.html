@@ -1,0 +1,24 @@
+{% extends 'base.html'%}
+      
+
+{% block content %}
+<div class="container py-5">
+    <h1 class="text-center mb-4">{{ book["title"]}}</h1>  
+    <hr>
+    <div class="row justify-content-center align-items-center">
+        <div class="col-md-6 text-center">
+            <img src="{{ url_for('static'  ,filename='images/' + book['image_url']) }}" class="img-fluid rounded shadow" alt="Product Image" style="background-color: white; height: 400px;">
+        </div>
+        <div class="col-md-6">
+            <div class="card shadow p-4">
+                <div class="card-body">
+                    <h2 class="card-title text-dark">{{ book["title"]}}</h2>
+                    <p class="card-title text-dark"><span style="font-weight: bold;">Author:  </span>{{ book["author"]}}</p>
+                    <p class="card-text"><span style="font-weight: bold;">Genre: </span> {{ book["genre"]}}</p>
+                    <p class="card-text"><span style="font-weight: bold;">Description:  </span>{{ book["description"] }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

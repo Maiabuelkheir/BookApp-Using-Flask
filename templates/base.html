@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+</head>
+
+<body style="background:#be82e0" >
+  <nav class="navbar navbar-expand-lg navbar-light  mb-2" style="background-color: #34093f;">
+    <div class="container-fluid">
+      <a class="navbar-brand text-white " href="{{ url_for('home') }}">The Book Store</a>
+      <div class="collapse navbar-collapse">
+        <a href="{{ url_for('addbook') }}" class="btn btn-warning text-white me-2">
+          <i class="bi bi-journal-plus"></i> Add Book
+        </a>
+        
+        <a href="{{ url_for('addauthor') }}" class="btn btn-warning text-white">
+          <i class="bi bi-person-lines-fill"></i> Add Author
+        </a>
+        
+        <ul class="navbar-nav ms-auto">
+          {% if current_user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{{ url_for('login') }}">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="{{ url_for('register') }}">Register</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+  {% block content %}
+  {% endblock content %}
+
+  <footer class="text-white text-center py-3 mt-auto" style="background:#24042c;;">
+    © 2025 The Book Store. All Rights Reserved.
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
